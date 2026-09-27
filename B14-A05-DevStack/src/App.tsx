@@ -53,7 +53,7 @@ function App() {
     <main>
       <section className="hero section-wrap">
         <div className="hero-copy"><h1>Build your <span>ideal<br className="desktop-break" /> development stack.</span></h1><p className="hero-description">Explore the tools behind great products, compare your options, and assemble a stack that feels right for the work ahead.</p><div className="hero-actions"><a className="primary-button" href="#technologies">Explore technologies <span aria-hidden="true">↓</span></a><a className="secondary-button" href="#about">Learn more <span aria-hidden="true">↗</span></a></div></div>
-        <div className="hero-art"><img src="/assets/banner-stack.png" alt="A glowing layered stack of development tools" /><span className="art-dot art-dot--one" /><span className="art-dot art-dot--two" /></div>
+        <div className="hero-art"><img src={`${import.meta.env.BASE_URL}assets/banner-stack.png`} alt="A glowing layered stack of development tools" /><span className="art-dot art-dot--one" /><span className="art-dot art-dot--two" /></div>
       </section>
 
       <section className="explorer section-wrap" id="technologies"><div className="section-heading"><div><h2>Explore <span>technologies.</span></h2><p>Pick the building blocks that will move your next idea forward.</p></div></div><div className="explorer-layout"><div className="technology-grid">{technologies.map((technology) => <TechnologyCard key={technology.id} technology={technology} isAdded={stack.some((item) => item.id === technology.id)} onAdd={() => addToStack(technology)} />)}</div><StackPanel stack={stack} onRemove={removeFromStack} onClear={clearStack} /></div></section>
