@@ -1,30 +1,24 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import toast from 'react-hot-toast'
 import technologiesData from './data/technologies.json'
 import { Brand } from './components/Brand'
 import { Footer } from './components/Footer'
 import { StackPanel } from './components/StackPanel'
 import { TechnologyCard } from './components/TechnologyCard'
-import type { Category, Technology } from './types'
+import type { Technology } from './types'
 
 const technologies = technologiesData as Technology[]
-const categories: Category[] = ['All', 'Frontend', 'Backend', 'Database', 'Language', 'Styling', 'DevOps']
 
 function App() {
-  const [activeCategory, setActiveCategory] = useState<Category>('All')
   const [stack, setStack] = useState<Technology[]>([])
   const [menuOpen, setMenuOpen] = useState(false)
-
-  const filteredTechnologies = useMemo(() => technologies.filter((technology) => {
-    return activeCategory === 'All' || technology.category === activeCategory
-  }), [activeCategory])
 
   const addToStack = (technology: Technology) => {
     if (stack.some((item) => item.id === technology.id)) {
       toast('That technology is already in your stack.')
       return
     }
-    if (stack.length >= 6) {
+    if (stack.length >= 12) {
       toast.error('Your stack is full. Remove one tool to continue.')
       return
     }
@@ -62,7 +56,7 @@ function App() {
         <div className="hero-art"><img src="/assets/banner-stack.png" alt="A glowing layered stack of development tools" /><span className="art-dot art-dot--one" /><span className="art-dot art-dot--two" /></div>
       </section>
 
-      <section className="explorer section-wrap" id="technologies"><div className="section-heading"><div><h2>Explore <span>technologies.</span></h2><p>Pick the building blocks that will move your next idea forward.</p></div></div><div className="category-bar" role="tablist" aria-label="Technology categories">{categories.map((category) => <button key={category} className={activeCategory === category ? 'active' : ''} onClick={() => setActiveCategory(category)} role="tab" aria-selected={activeCategory === category}>{category}</button>)}</div><div className="explorer-layout"><div className="technology-grid">{filteredTechnologies.map((technology) => <TechnologyCard key={technology.id} technology={technology} isAdded={stack.some((item) => item.id === technology.id)} onAdd={() => addToStack(technology)} />)}{filteredTechnologies.length === 0 && <div className="no-results"><strong>No tools found.</strong><span>Try a different search or category.</span></div>}</div><StackPanel stack={stack} onRemove={removeFromStack} onClear={clearStack} /></div></section>
+      <section className="explorer section-wrap" id="technologies"><div className="section-heading"><div><h2>Explore <span>technologies.</span></h2><p>Pick the building blocks that will move your next idea forward.</p></div></div><div className="explorer-layout"><div className="technology-grid">{technologies.map((technology) => <TechnologyCard key={technology.id} technology={technology} isAdded={stack.some((item) => item.id === technology.id)} onAdd={() => addToStack(technology)} />)}</div><StackPanel stack={stack} onRemove={removeFromStack} onClear={clearStack} /></div></section>
 
     </main>
     <Footer />

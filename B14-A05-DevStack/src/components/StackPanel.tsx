@@ -10,7 +10,7 @@ export function StackPanel({ stack, onRemove, onClear }: StackPanelProps) {
           <p className="eyebrow">Your workspace</p>
           <h2 id="stack-heading">Your Stack</h2>
         </div>
-        <span className="stack-count">{stack.length}/6</span>
+        <span className="stack-count">{stack.length}/12</span>
       </div>
       <p className="stack-intro">{stack.length === 0 ? 'Choose tools to shape your next project.' : `${stack.length} ${stack.length === 1 ? 'technology' : 'technologies'} selected`}</p>
       {stack.length === 0 ? (
