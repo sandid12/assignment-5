@@ -1,0 +1,5 @@
+import { Brand } from './Brand'
+
+export function Footer() {
+  return <footer className="site-footer"><div className="footer-grid"><div className="footer-brand"><Brand /><p>A considered toolkit for developers building useful things on the web.</p><div className="socials"><a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a><a href="https://twitter.com" target="_blank" rel="noreferrer">Twitter</a><a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a></div></div><div><h3>Explore</h3><a href="#technologies">Technologies</a><a href="#about">About us</a><a href="#contact">Contact</a></div><div><h3>Resources</h3><a href="#projects">Projects</a><a href="#guides">Guides</a><a href="#changelog">Changelog</a></div><div><h3>Legal</h3><a href="#privacy">Privacy policy</a><a href="#terms">Terms of service</a></div></div><div className="footer-bottom"><span>© 2026 DevStack. Built for better decisions.</span><span><a href="#privacy">Privacy</a> <a href="#terms">Terms</a></span></div></footer>
+}
